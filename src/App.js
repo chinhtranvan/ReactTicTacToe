@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       Xin chao anh sim!
       nhanh len em cho
+      waiting!!
     </div>
   );
 }
