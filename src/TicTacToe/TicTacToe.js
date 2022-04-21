@@ -1,106 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+
+import { Board } from "./components/Board";
+import { ResetButton } from "./components/ResetButton";
+import { ScoreBoard } from "./components/ScoreBoard";
 import './TicTacToe.css';
 
-const TicTacToe = () => {
-	const [turn, setTurn] = useState('x');
-	const [cells, setCells] = useState(Array(9).fill(''));
-	const [winner, setWinner] = useState();
+const App = () => {
 
-	const checkForWinner = (squares) => {
-		let combos = {
-			across: [
-				[0, 1, 2],
-				[3, 4, 5],
-				[6, 7, 8],
-			],
-			down: [
-				[0, 3, 6],
-				[1, 4, 7],
-				[2, 5, 8],
-			],
-			diagnol: [
-				[0, 4, 8],
-				[2, 4, 6],
-			],
-		};
+  const WIN_CONDITIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
 
-		for (let combo in combos) {
-			combos[combo].forEach((pattern) => {
-				if (
-					squares[pattern[0]] === '' ||
-					squares[pattern[1]] === '' ||
-					squares[pattern[2]] === ''
-				) {
-					// do nothing
-				} else if (
-					squares[pattern[0]] === squares[pattern[1]] &&
-					squares[pattern[1]] === squares[pattern[2]]
-				) {
-					setWinner(squares[pattern[0]]);
-				}
-			});
-		}
-	};
+  const [xPlaying, setXPlaying] = useState(true);
+  const [board, setBoard] = useState(Array(9).fill(null))
+  const [scores, setScores] = useState({ xScore: 0, oScore: 0 })
+  const [gameOver, setGameOver] = useState(false);
 
-	const handleClick = (num) => {
-		if (cells[num] !== '') {
-			alert('already clicked');
-			return;
-		}
+  const handleBoxClick = (boxIdx) => {
+    // Step 1: Update the board
+    const updatedBoard = board.map((value, idx) => {
+      if (idx === boxIdx) {
+        return xPlaying ? "X" : "O";
+      } else {
+        return value;
+      }
+    })
 
-		let squares = [...cells];
+    setBoard(updatedBoard);
 
-		if (turn === 'x') {
-			squares[num] = 'x';
-			setTurn('o');
-		} else {
-			squares[num] = 'o';
-			setTurn('x');
-		}
+    // Step 2: Check if either player has won the game
+    const winner = checkWinner(updatedBoard);
 
-		checkForWinner(squares);
-		setCells(squares);
-	};
+    if (winner) {
+      if (winner === "O") {
+        let { oScore } = scores;
+        oScore += 1;
+        setScores({ ...scores, oScore })
+      } else {
+        let { xScore } = scores;
+        xScore += 1;
+        setScores({ ...scores, xScore })
+      }
+    }
 
-	const handleRestart = () => {
-		setWinner(null);
-		setCells(Array(9).fill(''));
-	};
+    // Step 3: Change active player
+    setXPlaying(!xPlaying);
+  }
 
-	const Cell = ({ num }) => {
-		return <td onClick={() => handleClick(num)}>{cells[num]}</td>;
-	};
+  const checkWinner = (board) => {
+    for (let i = 0; i < WIN_CONDITIONS.length; i++) {
+      const [x, y, z] = WIN_CONDITIONS[i];
 
-	return (
-		<div className='container'>
-			<table>
-				Turn: {turn}
-				<tbody>
-					<tr>
-						<Cell num={0} />
-						<Cell num={1} />
-						<Cell num={2} />
-					</tr>
-					<tr>
-						<Cell num={3} />
-						<Cell num={4} />
-						<Cell num={5} />
-					</tr>
-					<tr>
-						<Cell num={6} />
-						<Cell num={7} />
-						<Cell num={8} />
-					</tr>
-				</tbody>
-			</table>
-			{winner && (
-				<>
-					<p>{winner} is the winner!</p>
-					<button onClick={() => handleRestart()}>Play Again</button>
-				</>
-			)}
-		</div>
-	);
-};
+      // Iterate through win conditions and check if either player satisfies them
+      if (board[x] && board[x] === board[y] && board[y] === board[z]) {
+        setGameOver(true);
+        return board[x];
+      }
+    }
+  }
 
-export default TicTacToe;
+  const resetBoard = () => {
+    setGameOver(false);
+    setBoard(Array(9).fill(null));
+  }
+
+  return (
+    <div className="App">
+      <ScoreBoard scores={scores} xPlaying={xPlaying} />
+      <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
+      <ResetButton resetBoard={resetBoard} />
+    </div>
+  );
+}
+
+export default App;
