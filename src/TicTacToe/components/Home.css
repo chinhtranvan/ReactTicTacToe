@@ -1,0 +1,14 @@
+.Home {
+
+    background-image: url("../assets/Kapilina-Beach-Homes-HD-image.jpg"); 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.ChinhButton1 {
+    margin-top: 300px;
+}
+
+.ChinhButton2 {
+    margin-top: 50px;
+}
