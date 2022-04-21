@@ -1,14 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import TicTacToe from './TicTacToe/TicTacToe';
 
 function App() {
-  return (
-    <div className="App">
-      Xin chao anh sim!
-      nhanh len em cho
-      I'm waiting!!
-    </div>
-  );
+	return (
+		<div className='App'>
+			<TicTacToe />
+		</div>
+	);
 }
 
 export default App;
