@@ -2,10 +2,9 @@ import Button from '@mui/material/Button';
 import './Home.css';
 import { useNavigate } from "react-router-dom";
 import GreenButton from '../Elements/GreenButton'
-import Title from '../Elements/Title'
 import TicTacToe from '../TicTacToe';
 import Rooms from './Rooms';
-import ParticlesBg from 'particles-bg'
+// import ParticlesBg from 'particles-bg'
 function Home() {
     const navigate = useNavigate();
     const handleTwoPlayer = () => {
@@ -26,7 +25,7 @@ function Home() {
                     <div className='ChinhButton2'>
                         <GreenButton onClick={handleAIPlayer}  >Player vs AI Player</GreenButton>
                     </div>
-                    <ParticlesBg type="cobweb" bg={true} />
+             
                 </div>
                 
             </div>
