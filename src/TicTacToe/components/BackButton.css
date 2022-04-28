@@ -1,0 +1,14 @@
+.back-btn {
+    border: none;
+    border-radius: 0.5rem;
+    background-color: rgb(255, 106, 0);
+    color: white;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    margin: 2rem auto;
+    display: block;
+}
+
+.back-btn:hover {
+    background-color: rgb(255, 106, 0);
+}

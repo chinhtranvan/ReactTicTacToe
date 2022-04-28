@@ -1,30 +1,43 @@
 import Button from '@mui/material/Button';
-import { useState } from 'react';
 import './Home.css';
+import { useNavigate } from "react-router-dom";
+import GreenButton from '../Elements/GreenButton'
+import Title from '../Elements/Title'
 import TicTacToe from '../TicTacToe';
+import Rooms from './Rooms';
+import ParticlesBg from 'particles-bg'
 function Home() {
-    const [isGameStart, setIsGameStart] = useState(false);
-    return (
-		<div className='Home'>
-            {isGameStart ? <TicTacToe/> : <Menu setGameStart={setIsGameStart}/> }
-		</div>
-	);
-}
-function Menu(props){
+    const navigate = useNavigate();
     const handleTwoPlayer = () => {
-        props.setGameStart(true);
+        navigate('/2players');
+        
+    }
+    const handleAIPlayer = () => {
+        navigate('/AIplayers');      
     }
     return (
         <div>
-            <div className='ChinhButton1'>
-                <Button size='large' color='success' onClick={handleTwoPlayer} variant="contained">Player 1 vs Player 2</Button>
-            </div>
-            <div className='ChinhButton2'>
-                <Button size='large' color='success' variant="contained">Player vs AI Player</Button>
+            <div className='Home'>   
+                <div>
+                    <h1 className='tittle'>XO GAME</h1>
+                    <div className='ChinhButton1'>
+                        <GreenButton onClick={handleTwoPlayer} >Player 1 vs Player 2</GreenButton>
+                    </div>
+                    <div className='ChinhButton2'>
+                        <GreenButton onClick={handleAIPlayer}  >Player vs AI Player</GreenButton>
+                    </div>
+                    <ParticlesBg type="cobweb" bg={true} />
+                </div>
+                
             </div>
         </div>
 
-    )
+    )  
 }
-
+//  <div className='ChinhButton1'>
+//                         <GreenButton size='large' color='success' onClick={handleTwoPlayer} variant="contained">Player 1 vs Player 2</GreenButton>
+//                     </div>
+//                     <div className='ChinhButton2'>
+//                         <GreenButton size='large' color='success' onClick={handleAIPlayer}  variant="contained">Player vs AI Player</GreenButton>
+//                     </div>
 export default Home;
