@@ -5,7 +5,7 @@ import './OnlineAndOffline.css';
 function OnlineAndOffline(){
     const navigate = useNavigate();
     const handleOnline = () => {
-        navigate('/2players');
+        navigate('/2players/Online');
         
     }
     const handleOffline = () => {
@@ -13,7 +13,7 @@ function OnlineAndOffline(){
         
     }
     return (
-        <div className='Home'>
+        <div className='bg'>
             <div className='Online'>
                 <GreenButton onClick={handleOnline}>Online</GreenButton>
             </div>

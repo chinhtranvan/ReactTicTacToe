@@ -14,11 +14,12 @@ function Home() {
     const handleAIPlayer = () => {
         navigate('/AIplayers');      
     }
+    
     return (
         <div>
             <div className='Home'>   
                 <div>
-                    <h1 className='tittle'>XO GAME</h1>
+                  
                     <div className='ChinhButton1'>
                         <GreenButton onClick={handleTwoPlayer} >Player 1 vs Player 2</GreenButton>
                     </div>
