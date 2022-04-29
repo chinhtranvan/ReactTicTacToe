@@ -1,9 +1,13 @@
 .Home {
 
    
-    background: transparent url("../assets/XO XO.png")  50% 130% no-repeat;
+    background: transparent url("../assets/XO XO.png")  ;
     /* background-color: black;   */
-
+    background-repeat: no-repeat;
+    background-position: 50%;
+   
+    background-size:50%;
+    background-position-y: 580%;
     position: fixed;
     width: 100%;
     height: 100%;
