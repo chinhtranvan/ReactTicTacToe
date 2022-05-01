@@ -73,7 +73,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { io } from "socket.io-client";
-const socket = io('http://localhost:3001/',{ transports : ['websocket'] });
+const socket = io('http://servertictactoe-env.eba-ypk7umnk.us-east-1.elasticbeanstalk.com/',{ transports : ['websocket'] });
 socket.on("connect", () => {
     console.log(socket.id); 
     console.log('thanh cong roi')
