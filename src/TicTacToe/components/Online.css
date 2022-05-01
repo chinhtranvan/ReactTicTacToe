@@ -2,3 +2,14 @@
     background-color: black;
     
 } */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #000000;
+    background-image: url(http://localhost:3000/static/media/XO%20XO.352481c….png) no-repeat 50% 190% fixed;
+    font-family: "Fredoka", sans-serif;
+
+}
