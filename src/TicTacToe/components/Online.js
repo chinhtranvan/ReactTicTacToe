@@ -73,7 +73,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { io } from "socket.io-client";
-const socket = io('http://3.236.133.205/',{ transports : ['websocket'] });
+const socket = io('https://tictactoeserver-website.herokuapp.com/',{ transports : ['websocket'] });
 socket.on("connect", () => {
     console.log(socket.id); 
     console.log('thanh cong roi')
